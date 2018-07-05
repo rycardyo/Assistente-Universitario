@@ -64,6 +64,7 @@ ListaAulas *setAulas(ListaAulas *aulas)
         aulas = novo;
         return aulas;
     }
+
 }
 
 ListaAulas editAula(ListaAulas aula)
@@ -125,6 +126,7 @@ int setQuantidadeAulas(ListaAulas *aulas)
         return 0;
     }
 }
+
 
 
 ListaAulas *menuAulas (ListaAulas *aulas)
@@ -235,6 +237,7 @@ void imprimeAulas(ListaAulas *aulas)
 
 int setQuantidadeFaltas(ListaAulas *aulas)
 {
+    int horasFaltadas;
     if (aulas != NULL)
     {
         int cont = 0;
@@ -246,12 +249,47 @@ int setQuantidadeFaltas(ListaAulas *aulas)
             }
             aulas = aulas->prox;
         }
+        horasFaltadas = cont * 2;
         return cont;
     }else{
         return 0;
     }
 }
+float frequencia;
 
+float indiceFrequencia(ListaMaterias *materia, ListaAulas *aulas){
+    int horasFaltas;
+    if(aulas != NULL){
+        horasFaltas = (setQuantidadeFaltas(aulas)*2);
+        frequencia = 100 - ((materia->cargaHoraria/100)*horasFaltas);
+        return frequencia;
+    }
+    else{
+        horasFaltas = 0;
+        frequencia = 100 - ((materia->cargaHoraria/100)*horasFaltas);
+        return frequencia;
+        return 0;
+    }
+}
+
+void situacaoFrequencia(ListaMaterias *materia, ListaAulas *aulas){
+    if(aulas != NULL){
+        indiceFrequencia(materia, aulas);
+        if ( frequencia > 80 &&  frequencia <= 100){
+            printf("\nFREQUENCIA ATUAL: %f \n", frequencia);
+        }
+        else{
+            if( frequencia > 75 && frequencia <= 80 ){
+                printf("\nATENÇÃO, FREQUENCIA ATUAL: %f\n ", frequencia);
+            }
+
+            else{
+                printf("\nFREQUENCIA ATUAL: %f \nAluno Reprovado :/ \n", frequencia);
+
+            }
+        }
+    }
+}
 void gravaAula(ListaMaterias *materia, char *nome, int numPeriodo)
 {
     FILE *arquivo;
@@ -309,4 +347,6 @@ ListaAulas *carregaAula (ListaMaterias *materia, char *nome, int numPeriodo)
     }
     return materia->aulas;
 }
+
+
 
