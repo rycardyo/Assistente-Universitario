@@ -157,6 +157,8 @@ void imprimeAulas(ListaAulas *aulas);
 int setQuantidadeFaltas(ListaAulas *aulas);
 void gravaAula(ListaMaterias *materia, char *nome, int numPeriodo);
 ListaAulas *carregaAula (ListaMaterias *materia, char *nome, int numPeriodo);
+float indiceFrequencia(ListaMaterias *materia, ListaAulas *aulas);
+void situacaoFrequencia(ListaMaterias *materia, ListaAulas *aulas);
 
 
 Data setData();
@@ -173,4 +175,6 @@ void imprimeCurso(Curso curso);
 Faculdade setFaculdade();
 Faculdade editFaculdade(Faculdade faculdade);
 void imprimeFaculdade(Faculdade faculdade);
+
+
 
