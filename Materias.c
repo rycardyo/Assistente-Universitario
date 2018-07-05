@@ -252,9 +252,11 @@ void imprimeMaterias(ListaMaterias *materia)
             printf("\nMateria: %s", aux->nome);
             printf("\nNumero da materia: %d", aux->numero);
             printf("\nCarga Horaria: %d", aux->cargaHoraria);
-            printf("\nQuantidade de aulas: %d", aux->quandidadeAulas);
-            printf("\nQuantidade de faltas: %d", aux->quantidadeFaltas);
+            printf("\nQuantidade de aulas: %d", setQuantidadeAulas(materia->aulas));
+            printf("\nQuantidade de faltas: %d", setQuantidadeFaltas(materia->aulas));
             printf("\nEmenta: %s", aux->ementa);
+
+            situacaoFrequencia(materia, materia->aulas);
             printf("\n\n\n");
             aux = aux->prox;
         }
@@ -328,4 +330,5 @@ ListaMaterias *carregaMateria (PilhaPeriodos *periodo, char *nome)
     }
     return periodo->materias;
 }
+
 
